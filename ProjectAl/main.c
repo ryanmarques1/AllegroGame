@@ -29,9 +29,9 @@ int main()
     al_draw_line(100,100,largura - 100, 100, al_map_rgb(255,0,0),2);
     al_draw_line(50,200,largura - 50, 200, al_map_rgb(0,255,0),2);
     */
-    al_draw_triangle(10,200,100,10,190,200,al_map_rgb(255,0,255),3);
-    al_draw_filled_triangle(200,300,400,100,400,300,al_map_rgb(155,0,0));
-    al_draw_circle(200,250,100,al_map_rgb(0,0,255),2);
+    al_draw_triangle(10,200,100,10,190,200,al_map_rgb(255,0,255),2);
+    al_draw_filled_triangle(100,250,150,10,190,200,al_map_rgb(155,0,0));
+    al_draw_circle(250,200,50,al_map_rgb(0,0,255),2);
     al_flip_display();
     al_rest(5.0);
     al_destroy_display(display);
