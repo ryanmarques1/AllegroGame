@@ -1,11 +1,14 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
 int main()
 {
     //Variaveis do Game;
     const int largura = 500;
     const int altura = 350;
+    const float x = 900;
+    const float y = 264;
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -23,17 +26,24 @@ int main()
 
     //Start ADDONS
     //Screen Rest Time
-    al_init_primitives_addon();//Start formas primitivas
+
+    al_init_primitives_addon();
+    al_init_image_addon();
+    ALLEGRO_BITMAP *piso = al_load_bitmap("teste.bmp");
     /*
     al_draw_pixel(300,250,al_map_rgb(200,255,255));
     al_draw_line(100,100,largura - 100, 100, al_map_rgb(255,0,0),2);
     al_draw_line(50,200,largura - 50, 200, al_map_rgb(0,255,0),2);
-    */
     al_draw_triangle(10,200,100,10,190,200,al_map_rgb(255,0,255),2);
     al_draw_filled_triangle(100,250,150,10,190,200,al_map_rgb(155,0,0));
     al_draw_circle(250,200,50,al_map_rgb(0,0,255),2);
+    al_draw_ellipse(100,100,100,200,al_map_rgb(0,255,0),2);
+    */
+    al_draw_bitmap(piso,50,50,ALLEGRO_FLIP_HORIZONTAL);
     al_flip_display();
-    al_rest(5.0);
+    al_clear_to_color(al_map_rgb(0,0,0));
+    al_rest(20.0);
     al_destroy_display(display);
+    al_destroy_bitmap(piso);
     return 0;
 }
