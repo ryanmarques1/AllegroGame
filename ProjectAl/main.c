@@ -58,12 +58,18 @@ int main()
     ALLEGRO_FONT *fonte2 = al_load_font("slkscr.ttf",20,NULL);
     //Drawn
     const int x2 = 640;
+
     al_draw_text(fonte,al_map_rgb(0,255,255),x2/2,190,ALLEGRO_ALIGN_CENTRE,"Arkanoid: The vengeance of Dio");
     al_draw_text(fonte2,al_map_rgb(0,255,0),100,250,NULL,"Play to Start");
     al_draw_text(fonte2,al_map_rgb(0,255,0),100,290,NULL,"Coop");
     al_draw_text(fonte2,al_map_rgb(0,255,0),100,330,NULL,"Options");
     al_draw_text(fonte2,al_map_rgb(0,255,0),100,370,NULL,"Extras");
-
+    /*
+    int pixelx = al_get_display_width(display);
+    int pixely = al_get_display_height(display);
+    al_draw_textf(fonte2,al_map_rgb(0,0,255),100,250,ALLEGRO_ALIGN_LEFT,"Possui as dimensoes:%d e %d",pixelx,pixely);
+    */
+    ins
     //-------------------------------------
     al_flip_display();
     al_clear_to_color(al_map_rgb(0,0,0));
