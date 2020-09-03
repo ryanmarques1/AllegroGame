@@ -33,7 +33,7 @@ int main()
     /*Utilização de imagesn */  al_init_image_addon();
 
     /* Load fonts */ al_init_font_addon();
-    al_init_ttf_addon();
+                     al_init_ttf_addon();
 
     /*
     al_draw_triangle(10,200,100,10,190,200,al_map_rgb(255,0,255),2);
@@ -54,11 +54,14 @@ int main()
     al_draw_spline(pontos2,al_map_rgb(0,255,0),5);
     al_draw_spline(pontos3,al_map_rgb(0,0,255),5);
     */
-    ALLEGRO_FONT *fonte = al_load_font(("Alien_Strawberry.ttf",20,NULL);
-
+    ALLEGRO_FONT *fonte = al_load_font("Alien_Strawberry.ttf",35,NULL);
+    ALLEGRO_FONT *fonte2 = al_load_font("Alien_Strawberry.ttf",20,NULL);
     //Drawn
-    al_draw_text(fonte,al_map_rgb(255,255,0),50,50,"Arkanoid: The vengeance of Dio");
-
+    al_draw_text(fonte,al_map_rgb(0,255,255),largura/2,altura/2,ALLEGRO_ALIGN_CENTRE,"Arkanoid: The vengeance of Dio");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),200,250,NULL,"Play to Start");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),200,290,NULL,"Coop");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),200,330,NULL,"Options");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),200,370,NULL,"Extras");
 
     //-------------------------------------
     al_flip_display();
@@ -66,7 +69,8 @@ int main()
     al_rest(5.0);
 
     al_destroy_display(display);
-    al_destroy_bitmap(piso);
+    /*al_destroy_bitmap(piso);*/
     al_destroy_font(fonte);
+    al_destroy_font(fonte2);
     return 0;
 }
