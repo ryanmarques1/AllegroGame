@@ -55,13 +55,14 @@ int main()
     al_draw_spline(pontos3,al_map_rgb(0,0,255),5);
     */
     ALLEGRO_FONT *fonte = al_load_font("Alien_Strawberry.ttf",35,NULL);
-    ALLEGRO_FONT *fonte2 = al_load_font("Alien_Strawberry.ttf",20,NULL);
+    ALLEGRO_FONT *fonte2 = al_load_font("slkscr.ttf",20,NULL);
     //Drawn
-    al_draw_text(fonte,al_map_rgb(0,255,255),largura/2,altura/2,ALLEGRO_ALIGN_CENTRE,"Arkanoid: The vengeance of Dio");
-    al_draw_text(fonte2,al_map_rgb(0,255,0),200,250,NULL,"Play to Start");
-    al_draw_text(fonte2,al_map_rgb(0,255,0),200,290,NULL,"Coop");
-    al_draw_text(fonte2,al_map_rgb(0,255,0),200,330,NULL,"Options");
-    al_draw_text(fonte2,al_map_rgb(0,255,0),200,370,NULL,"Extras");
+    const int x2 = 640;
+    al_draw_text(fonte,al_map_rgb(0,255,255),x2/2,190,ALLEGRO_ALIGN_CENTRE,"Arkanoid: The vengeance of Dio");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),100,250,NULL,"Play to Start");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),100,290,NULL,"Coop");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),100,330,NULL,"Options");
+    al_draw_text(fonte2,al_map_rgb(0,255,0),100,370,NULL,"Extras");
 
     //-------------------------------------
     al_flip_display();
