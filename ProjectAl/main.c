@@ -69,7 +69,7 @@ int main()
     int pixely = al_get_display_height(display);
     al_draw_textf(fonte2,al_map_rgb(0,0,255),100,250,ALLEGRO_ALIGN_LEFT,"Possui as dimensoes:%d e %d",pixelx,pixely);
     */
-    ins
+
     //-------------------------------------
     al_flip_display();
     al_clear_to_color(al_map_rgb(0,0,0));
