@@ -12,6 +12,8 @@ int main()
     const float x = 900;
     const float y = 264;
     const int x2 = 640;
+    bool END = false;
+
     float pontos[] = {0,0,400,100,50,200,largura,altura};
     float pontos2[] = {0,0,largura,400,250,300,altura,largura};
     float pontos3[] = {0,altura,300,350,largura,altura,500,100};
@@ -38,12 +40,12 @@ int main()
     al_init_image_addon();
     al_init_font_addon();
     al_init_ttf_addon();
-
+    al_install_keyboard();
     //importanado os atributos.
     /*Dando load na imagem ALLEGRO_BITMAP *piso = al_load_bitmap("teste.bmp");*/
     ALLEGRO_FONT *fonte = al_load_font("Alien_Strawberry.ttf",35,NULL);
     ALLEGRO_FONT *fonte2 = al_load_font("slkscr.ttf",20,NULL);
-
+    ALLEGRO_EVENT_QUEUE *events = NULL;
 
     //Drawn
     /*
@@ -72,8 +74,8 @@ int main()
 
 
     //Entrada de dados e eventos
-
-
+    events = al_create_event_queue();
+    al_register_event_source(events,al_get_keyboard_event_source());
     //-------------------------------------
     al_flip_display();
     al_clear_to_color(al_map_rgb(0,0,0));
