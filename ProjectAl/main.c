@@ -11,6 +11,10 @@ int main()
     const int altura = 480;
     const float x = 900;
     const float y = 264;
+    const int x2 = 640;
+    float pontos[] = {0,0,400,100,50,200,largura,altura};
+    float pontos2[] = {0,0,largura,400,250,300,altura,largura};
+    float pontos3[] = {0,altura,300,350,largura,altura,500,100};
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -29,12 +33,19 @@ int main()
     //Start ADDONS
     //Screen Rest Time
 
+    //Inicialização de addons
     al_init_primitives_addon();
-    /*Utilização de imagesn */  al_init_image_addon();
+    al_init_image_addon();
+    al_init_font_addon();
+    al_init_ttf_addon();
 
-    /* Load fonts */ al_init_font_addon();
-                     al_init_ttf_addon();
+    //importanado os atributos.
+    /*Dando load na imagem ALLEGRO_BITMAP *piso = al_load_bitmap("teste.bmp");*/
+    ALLEGRO_FONT *fonte = al_load_font("Alien_Strawberry.ttf",35,NULL);
+    ALLEGRO_FONT *fonte2 = al_load_font("slkscr.ttf",20,NULL);
 
+
+    //Drawn
     /*
     al_draw_triangle(10,200,100,10,190,200,al_map_rgb(255,0,255),2);
     al_draw_pixel(300,250,al_map_rgb(200,255,255));
@@ -43,22 +54,11 @@ int main()
     al_draw_filled_triangle(100,250,150,10,190,200,al_map_rgb(155,0,0));
     al_draw_circle(250,200,50,al_map_rgb(0,0,255),2);
     al_draw_ellipse(100,100,100,200,al_map_rgb(0,255,0),2);
-    /*Dando load na imagem ALLEGRO_BITMAP *piso = al_load_bitmap("teste.bmp");*/
-    /*
     al_draw_bitmap(piso,50,50,ALLEGRO_FLIP_HORIZONTAL);
-
-    float pontos[] = {0,0,400,100,50,200,largura,altura};
-    float pontos2[] = {0,0,largura,400,250,300,altura,largura};
-    float pontos3[] = {0,altura,300,350,largura,altura,500,100};
     al_draw_spline(pontos,al_map_rgb(255,0,0),5);
     al_draw_spline(pontos2,al_map_rgb(0,255,0),5);
     al_draw_spline(pontos3,al_map_rgb(0,0,255),5);
     */
-    ALLEGRO_FONT *fonte = al_load_font("Alien_Strawberry.ttf",35,NULL);
-    ALLEGRO_FONT *fonte2 = al_load_font("slkscr.ttf",20,NULL);
-    //Drawn
-    const int x2 = 640;
-
     al_draw_text(fonte,al_map_rgb(0,255,255),x2/2,190,ALLEGRO_ALIGN_CENTRE,"Arkanoid: The vengeance of Dio");
     al_draw_text(fonte2,al_map_rgb(0,255,0),100,250,NULL,"Play to Start");
     al_draw_text(fonte2,al_map_rgb(0,255,0),100,290,NULL,"Coop");
@@ -69,6 +69,10 @@ int main()
     int pixely = al_get_display_height(display);
     al_draw_textf(fonte2,al_map_rgb(0,0,255),100,250,ALLEGRO_ALIGN_LEFT,"Possui as dimensoes:%d e %d",pixelx,pixely);
     */
+
+
+    //Entrada de dados e eventos
+
 
     //-------------------------------------
     al_flip_display();
