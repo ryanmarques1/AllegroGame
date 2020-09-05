@@ -36,9 +36,7 @@
 			<Add library="../../../Allegro c++/allegro-5.0.10-mingw-4.7.0/lib/liballegro-5.0.10-monolith-mt-debug.a" />
 			<Add library="../../../Allegro c++/allegro-5.0.10-mingw-4.7.0/lib/liballegro-5.0.10-monolith-mt.a" />
 		</Linker>
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
