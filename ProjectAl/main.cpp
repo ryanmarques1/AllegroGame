@@ -16,6 +16,7 @@ int main()
     bool END = false;
     int px = 100;
     int py = 100;
+    bool teclas[4];
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -76,13 +77,12 @@ int main()
         }
     //Drawn
        al_draw_filled_rectangle(px,py, px + 10, py + 10, al_map_rgb(255,0,0));
-
-
        al_flip_display();
+       al_clear_to_color(al_map_rgb(0,0,0));
     }
 
     //-------------------------------------
-
+    //END GAME
     al_destroy_display(display);
     al_destroy_event_queue(events);
     return 0;
