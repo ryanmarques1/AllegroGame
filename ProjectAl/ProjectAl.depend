@@ -247,7 +247,15 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1599323427 source:d:\gameallegro\allegrogame\projectal\main.cpp
+1599488686 source:d:\gameallegro\allegrogame\projectal\main.cpp
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+
+1599487347 source:d:\gameallegro\allegrogame\projectal\main2.cpp
 	<allegro5/allegro.h>
 	<allegro5/allegro_native_dialog.h>
 	<allegro5/allegro_primitives.h>
