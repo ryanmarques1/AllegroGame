@@ -4,8 +4,7 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
-
-
+#include <windows.h>
 enum teclaS{up,down,rigth,left};
 int main()
 {
@@ -19,6 +18,7 @@ int main()
     int px = 100;
     int py = 100;
     bool teclas[] = {false,false,false,false};
+    bool drawn = true, drawn2 = true;
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -112,6 +112,9 @@ int main()
             if(ev.mouse.button & 2){
                 END = true;
             }
+            else if(ev.mouse.button & 1)
+                drawn = !drawn;
+
         }
         if(teclas[up])
          py-= teclas[up] * 15;
@@ -123,8 +126,10 @@ int main()
          px+= teclas[rigth] * 15;
 
     //Drawn in Display
+      if(drawn)
+           al_draw_filled_rectangle(px,py, px + 25, py + 25, al_map_rgb(255,0,0));
 
-       al_draw_filled_rectangle(px,py, px + 25, py + 25, al_map_rgb(255,0,0));
+
        al_flip_display();
        al_clear_to_color(al_map_rgb(0,0,0));
     }
