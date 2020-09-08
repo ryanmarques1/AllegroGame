@@ -18,7 +18,11 @@ int main()
     int px = 100;
     int py = 100;
     bool teclas[] = {false,false,false,false};
-    bool drawn = true, drawn2 = true;
+    bool drawn = true;
+    bool drawn2 = false;
+    bool drawn3 = false;
+    float px_q = 0.0;
+    float py_q = 0.0;
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -54,16 +58,15 @@ int main()
     al_register_event_source(events,al_get_mouse_event_source());
 
     //Loop
-    /*Função para sumir com o cursor dentro do display do jogo*/al_hide_mouse_cursor(display);
     while(!END){
         ALLEGRO_EVENT ev;
         al_wait_for_event(events,&ev);
         if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
-            /*
+
             if(ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE){
                 END = true;
             }
-            */
+
             switch(ev.keyboard.keycode){
             case ALLEGRO_KEY_UP:
                 teclas[up] = true;
@@ -109,13 +112,22 @@ int main()
             py = ev.mouse.y;
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-            if(ev.mouse.button & 2){
-                END = true;
-            }
-            else if(ev.mouse.button & 1)
-                drawn = !drawn;
+             if(ev.mouse.button & 1)
+                drawn2 = true;
+            else if(ev.mouse.button & 2)
+                drawn3 = true;
+                px_q = ev.mouse.x;
+                py_q = ev.mouse.y;
+
+
 
         }
+        else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
+            drawn2 = false;
+            drawn3 = false;
+        }
+
+
         if(teclas[up])
          py-= teclas[up] * 15;
         else if(teclas[down])
@@ -126,12 +138,15 @@ int main()
          px+= teclas[rigth] * 15;
 
     //Drawn in Display
-      if(drawn)
-           al_draw_filled_rectangle(px,py, px + 25, py + 25, al_map_rgb(255,0,0));
+
+    if(drawn2)
+        al_draw_pixel(ev.mouse.x,ev.mouse.y,al_map_rgb(255,255,255));
+    if(drawn3)
+        al_draw_filled_rectangle(px_q,py_q,ev.mouse.x,ev.mouse.y,al_map_rgb(255,0,0));
 
 
        al_flip_display();
-       al_clear_to_color(al_map_rgb(0,0,0));
+
     }
 
     //-------------------------------------
