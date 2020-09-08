@@ -4,6 +4,9 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+
+
+enum teclaS{up,down,rigth,left};
 int main()
 {
 
@@ -16,7 +19,7 @@ int main()
     bool END = false;
     int px = 100;
     int py = 100;
-    bool teclas[4];
+    bool teclas[] = {false,false,false,false};
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -54,29 +57,55 @@ int main()
         ALLEGRO_EVENT ev;
         al_wait_for_event(events,&ev);
         if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
-            if(ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+            if(ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE){
                 END = true;
             }
             switch(ev.keyboard.keycode){
             case ALLEGRO_KEY_UP:
-                py-=20;
+                teclas[up] = true;
                 break;
             case ALLEGRO_KEY_DOWN:
-                py+=20;
+                teclas[down] = true;
                 break;
             case ALLEGRO_KEY_RIGHT:
-                px+=20;
+                teclas[rigth] = true;
                 break;
             case ALLEGRO_KEY_LEFT:
-                px-=20;
+                teclas[left] = true;
                 break;
             }
         }
+
+        else if(ev.type == ALLEGRO_EVENT_KEY_UP){
+                switch(ev.keyboard.keycode){
+                case ALLEGRO_KEY_UP:
+                    teclas[up] = false;
+                    break;
+                case ALLEGRO_KEY_DOWN:
+                    teclas[down] = false;
+                    break;
+                case ALLEGRO_KEY_RIGHT:
+                    teclas[rigth] = false;
+                    break;
+                case ALLEGRO_KEY_LEFT:
+                    teclas[left] = false;
+                    break;
+                default:
+                    break;
+                }
+
+          }
+
         else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
             END = true;
         }
+        py-= teclas[up] * 10;
+        py+= teclas[down] * 10;
+        px-= teclas[left] * 10;
+        px+= teclas[rigth] * 10;
     //Drawn
-       al_draw_filled_rectangle(px,py, px + 10, py + 10, al_map_rgb(255,0,0));
+
+       al_draw_filled_rectangle(px,py, px + 20, py + 20, al_map_rgb(255,0,0));
        al_flip_display();
        al_clear_to_color(al_map_rgb(0,0,0));
     }
