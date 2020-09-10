@@ -5,7 +5,10 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <windows.h>
+#include <cmath>
 enum teclaS{up,down,rigth,left};
+
+using namespace std;
 int main()
 {
 
@@ -18,11 +21,14 @@ int main()
     int px = 100;
     int py = 100;
     bool teclas[] = {false,false,false,false};
-    bool drawn = true;
+    bool drawn = false;
     bool drawn2 = false;
     bool drawn3 = false;
+    bool drawn4 = false;
     float px_q = 0.0;
     float py_q = 0.0;
+    float px_c = 0.0;
+    float py_c = 0.0;
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -112,19 +118,25 @@ int main()
             py = ev.mouse.y;
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-             if(ev.mouse.button & 1)
-                drawn2 = true;
-            else if(ev.mouse.button & 2)
+             if(ev.mouse.button & 1){
+                drawn4 = true;
+                px_c = ev.mouse.x;
+                py_c = ev.mouse.y;
+             }
+
+            else if(ev.mouse.button & 2){
                 drawn3 = true;
                 px_q = ev.mouse.x;
                 py_q = ev.mouse.y;
 
 
-
+        }
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            drawn2 = false;
+            drawn = false;
+            drawn4 = false;
             drawn3 = false;
+
         }
 
 
@@ -137,21 +149,25 @@ int main()
         else if(teclas[rigth])
          px+= teclas[rigth] * 15;
 
+
+    float r = sqrt( pow(abs(px_c - ev.mouse.x),2) + pow(abs(py_c - ev.mouse.y),2));
     //Drawn in Display
 
-    if(drawn2)
+    if(drawn)
         al_draw_pixel(ev.mouse.x,ev.mouse.y,al_map_rgb(255,255,255));
-    if(drawn3)
+
+    else if(drawn4)
+        al_draw_filled_circle(px_c,py_c,r,al_map_rgb(255,0,255));
+    else if(drawn3)
         al_draw_filled_rectangle(px_q,py_q,ev.mouse.x,ev.mouse.y,al_map_rgb(255,0,0));
 
-
        al_flip_display();
-
-    }
+}
 
     //-------------------------------------
     //END GAME
     al_destroy_display(display);
     al_destroy_event_queue(events);
     return 0;
-}
+  }
+
