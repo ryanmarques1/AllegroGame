@@ -1,14 +1,18 @@
+#include <windows.h>
+#include <cmath>
+#include <iostream>
+//----------------------------
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
-#include <windows.h>
-#include <cmath>
+using namespace std;
+
+
 enum teclaS{up,down,rigth,left};
 
-using namespace std;
 int main()
 {
 
@@ -86,6 +90,9 @@ int main()
             case ALLEGRO_KEY_LEFT:
                 teclas[left] = true;
                 break;
+            case ALLEGRO_KEY_Z:
+                al_clear_to_color(al_map_rgb(0,0,0));
+                break;
             }
         }
 
@@ -130,7 +137,7 @@ int main()
                 py_q = ev.mouse.y;
 
 
-        }
+          }
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
             drawn = false;
@@ -150,14 +157,16 @@ int main()
          px+= teclas[rigth] * 15;
 
 
-    float r = sqrt( pow(abs(px_c - ev.mouse.x),2) + pow(abs(py_c - ev.mouse.y),2));
+     float r = sqrt( pow(abs(px_c - ev.mouse.x),2) + pow(abs(py_c - ev.mouse.y),2));
+
+     cout<<"Coordenadas do mouse: " << ev.mouse.x << "x" << ev.mouse.y <<endl;
+     system("cls");
     //Drawn in Display
 
     if(drawn)
         al_draw_pixel(ev.mouse.x,ev.mouse.y,al_map_rgb(255,255,255));
-
     else if(drawn4)
-        al_draw_filled_circle(px_c,py_c,r,al_map_rgb(255,0,255));
+        al_draw_filled_circle(px_c,py_c,r,al_map_rgb(0,255,255));
     else if(drawn3)
         al_draw_filled_rectangle(px_q,py_q,ev.mouse.x,ev.mouse.y,al_map_rgb(255,0,0));
 
