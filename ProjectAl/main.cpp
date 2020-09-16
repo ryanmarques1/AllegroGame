@@ -1,6 +1,6 @@
+#include <iostream>
 #include <windows.h>
 #include <cmath>
-#include <iostream>
 //----------------------------
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
@@ -8,10 +8,10 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+
+enum teclaS{up,down,rigth,left1};
 using namespace std;
 
-
-enum teclaS{up,down,rigth,left};
 
 int main()
 {
@@ -33,6 +33,7 @@ int main()
     float py_q = 0.0;
     float px_c = 0.0;
     float py_c = 0.0;
+    float px_t=0.0,py_t=0.0,px_t2=0.0,py_t2=0.0,px_t3=0.0,py_t3=0.0;
     //Start Allegro5
     //This command create a screen
     ALLEGRO_DISPLAY* display=NULL;
@@ -88,7 +89,7 @@ int main()
                 teclas[rigth] = true;
                 break;
             case ALLEGRO_KEY_LEFT:
-                teclas[left] = true;
+                teclas[left1] = true;
                 break;
             case ALLEGRO_KEY_Z:
                 al_clear_to_color(al_map_rgb(0,0,0));
@@ -108,7 +109,7 @@ int main()
                     teclas[rigth] = false;
                     break;
                 case ALLEGRO_KEY_LEFT:
-                    teclas[left] = false;
+                    teclas[left1] = false;
                     break;
                 default:
                     break;
@@ -126,13 +127,13 @@ int main()
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
              if(ev.mouse.button & 1){
-                drawn4 = true;
+                drawn3 = true;
                 px_c = ev.mouse.x;
                 py_c = ev.mouse.y;
              }
 
             else if(ev.mouse.button & 2){
-                drawn3 = true;
+                drawn4 = true;
                 px_q = ev.mouse.x;
                 py_q = ev.mouse.y;
 
@@ -151,24 +152,25 @@ int main()
          py-= teclas[up] * 15;
         else if(teclas[down])
          py+= teclas[down] * 15;
-        else if(teclas[left])
-         px-= teclas[left] * 15;
+        else if(teclas[left1])
+         px-= teclas[left1] * 15;
         else if(teclas[rigth])
          px+= teclas[rigth] * 15;
 
 
      float r = sqrt( pow(abs(px_c - ev.mouse.x),2) + pow(abs(py_c - ev.mouse.y),2));
 
-     cout<<"Coordenadas do mouse: " << ev.mouse.x << "x" << ev.mouse.y <<endl;
-     system("cls");
+     cout<<"Coordenadas do cursor : " << ev.mouse.x << 'x' << ev.mouse.y <<endl;
+
     //Drawn in Display
 
     if(drawn)
         al_draw_pixel(ev.mouse.x,ev.mouse.y,al_map_rgb(255,255,255));
-    else if(drawn4)
-        al_draw_filled_circle(px_c,py_c,r,al_map_rgb(0,255,255));
     else if(drawn3)
+        al_draw_filled_circle(px_c,py_c,r,al_map_rgb(0,255,255));
+    else if(drawn4)
         al_draw_filled_rectangle(px_q,py_q,ev.mouse.x,ev.mouse.y,al_map_rgb(255,0,0));
+
 
        al_flip_display();
 }
