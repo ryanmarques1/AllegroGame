@@ -56,6 +56,8 @@ int main()
     al_install_mouse();
     al_init_primitives_addon();
     al_init_image_addon();
+    al_init_ttf_addon();
+    al_init_font_addon();
     //importanado os atributos.
 
     ALLEGRO_EVENT_QUEUE *events = NULL;
@@ -68,6 +70,7 @@ int main()
     al_register_event_source(events,al_get_display_event_source(display));
     al_register_event_source(events,al_get_mouse_event_source());
 
+    cout<<"---WELCOME---, abaixo as coordenadas do cursor do mouse x e y (Plano Cartesiano)"<<"\n";
     //Loop
     while(!END){
         ALLEGRO_EVENT ev;
@@ -121,6 +124,7 @@ int main()
             END = true;
         }
         //Utilizando o cursor do mouse para movimentar algum objeto
+        /*
         else if(ev.type == ALLEGRO_EVENT_MOUSE_AXES){
             px = ev.mouse.x;
             py = ev.mouse.y;
@@ -145,7 +149,7 @@ int main()
             drawn4 = false;
             drawn3 = false;
 
-        }
+        }*/
 
 
         if(teclas[up])
@@ -160,16 +164,21 @@ int main()
 
      float r = sqrt( pow(abs(px_c - ev.mouse.x),2) + pow(abs(py_c - ev.mouse.y),2));
 
-     cout<<"Coordenadas do cursor : " << ev.mouse.x << 'x' << ev.mouse.y <<endl;
+
+     cout<<"Coordenadas do cursor : " << ev.mouse.x << 'x' << ev.mouse.y <<"\n";
+
 
     //Drawn in Display
 
     if(drawn)
-        al_draw_pixel(ev.mouse.x,ev.mouse.y,al_map_rgb(255,255,255));
+        al_draw_filled_rectangle(px_q,py_q,px_q + 30,py_q + 30,al_map_rgb(255,0,0));
+
+    /*
     else if(drawn3)
         al_draw_filled_circle(px_c,py_c,r,al_map_rgb(0,255,255));
     else if(drawn4)
         al_draw_filled_rectangle(px_q,py_q,ev.mouse.x,ev.mouse.y,al_map_rgb(255,0,0));
+    */
 
 
        al_flip_display();
