@@ -247,7 +247,7 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1599833256 source:d:\gameallegro\allegrogame\projectal\main.cpp
+1600528007 source:d:\gameallegro\allegrogame\projectal\main.cpp
 	<iostream>
 	<windows.h>
 	<cmath>

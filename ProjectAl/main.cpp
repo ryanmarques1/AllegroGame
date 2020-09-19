@@ -24,6 +24,7 @@ int main()
     bool END = false;
     int px = 100;
     int py = 100;
+    int cont = 0;
     bool teclas[] = {false,false,false,false};
     bool drawn = false;
     bool drawn2 = false;
@@ -61,7 +62,7 @@ int main()
     //importanado os atributos.
 
     ALLEGRO_EVENT_QUEUE *events = NULL;
-
+    ALLEGRO_FONT *font20 = NULL;
     //Entrada de dados e eventos
     events = al_create_event_queue();
 
@@ -70,7 +71,8 @@ int main()
     al_register_event_source(events,al_get_display_event_source(display));
     al_register_event_source(events,al_get_mouse_event_source());
 
-    cout<<"---WELCOME---, abaixo as coordenadas do cursor do mouse x e y (Plano Cartesiano)"<<"\n";
+
+    font20 = al_load_font("slkscr.ttf",20,NULL);
     //Loop
     while(!END){
         ALLEGRO_EVENT ev;
@@ -124,32 +126,22 @@ int main()
             END = true;
         }
         //Utilizando o cursor do mouse para movimentar algum objeto
-        /*
+
         else if(ev.type == ALLEGRO_EVENT_MOUSE_AXES){
             px = ev.mouse.x;
             py = ev.mouse.y;
         }
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
              if(ev.mouse.button & 1){
-                drawn3 = true;
-                px_c = ev.mouse.x;
-                py_c = ev.mouse.y;
+                drawn = !drawn;
              }
 
             else if(ev.mouse.button & 2){
-                drawn4 = true;
-                px_q = ev.mouse.x;
-                py_q = ev.mouse.y;
-
+               END = true;
 
           }
         }
-        else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
-            drawn = false;
-            drawn4 = false;
-            drawn3 = false;
 
-        }*/
 
 
         if(teclas[up])
@@ -162,26 +154,16 @@ int main()
          px+= teclas[rigth] * 15;
 
 
-     float r = sqrt( pow(abs(px_c - ev.mouse.x),2) + pow(abs(py_c - ev.mouse.y),2));
 
-
-     cout<<"Coordenadas do cursor : " << ev.mouse.x << 'x' << ev.mouse.y <<"\n";
-
+    al_draw_textf( font20,al_map_rgb(255,0,0),largura/2,altura/2, ALLEGRO_ALIGN_CENTRE,"Quadros: ",cont++);
 
     //Drawn in Display
 
     if(drawn)
         al_draw_filled_rectangle(px_q,py_q,px_q + 30,py_q + 30,al_map_rgb(255,0,0));
 
-    /*
-    else if(drawn3)
-        al_draw_filled_circle(px_c,py_c,r,al_map_rgb(0,255,255));
-    else if(drawn4)
-        al_draw_filled_rectangle(px_q,py_q,ev.mouse.x,ev.mouse.y,al_map_rgb(255,0,0));
-    */
-
-
-       al_flip_display();
+    al_flip_display();
+    al_clear_to_color(al_map_rgb(0,0,0));
 }
 
     //-------------------------------------
